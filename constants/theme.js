@@ -2,6 +2,7 @@
 
 export const COLORS = {
     primary : "#F57C00",
+    primary_2 : "#F4B740",
     light_black : "#656565",
 
     
@@ -10,8 +11,9 @@ export const COLORS = {
 
     //Dark Mode
 
-    dark_primary : '#212121',
+    dark_primary : '#141518',
     dark_secondary : '#414141',
+    light_dark : '#727070'
 }
 
 export const SIZES = {

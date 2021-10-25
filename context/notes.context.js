@@ -93,7 +93,7 @@ const NotesContextProvider = ({ children }) => {
 
 
      const updateNotes = async (id,body) => {
-      
+        console.log(`updateing `, body )
         setIsLoading(true);
         try{
              console.log('stage 0')

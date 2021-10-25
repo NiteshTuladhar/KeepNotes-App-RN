@@ -17,8 +17,11 @@ const SearchBar = () => {
                 style={[styles.searchbar,{backgroundColor: darkMode ? appTheme.COLORS.dark_secondary : '#F6F7FB'}]}
                 placeholder="Search"
                 onChangeText={onChangeSearch}
+                placeholderTextColor = {darkMode ? appTheme.COLORS.light_dark : appTheme.COLORS.black}
                 value={searchQuery}
-                
+                theme ={{
+                    colors: { text: darkMode?appTheme.COLORS.white:appTheme.COLORS.black  } 
+                }}
             />
         </View>
     )
@@ -30,6 +33,6 @@ const styles = StyleSheet.create({
     searchbar:{
         marginBottom : 20,
         backgroundColor: '#F6F7FB',
-        
+        borderRadius : 50,
     }
 })

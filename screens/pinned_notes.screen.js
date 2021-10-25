@@ -16,9 +16,9 @@ const PinnedNotesScreen = ({ navigation }) => {
     return (
         <Wrapper>
             <Header isHomeScreen navigation={navigation} settings_navigation='Settings_Pinned' />
-            <SearchBar />
             <TitleComponent icontype='entypo' icon='pin' title1='Pinned' title2='Notes List' counter={counter} />
-            <Divider style={styles.divider}/>
+
+            <SearchBar />
             <NotesList notes={[]} isLoading={false} navigation={navigation} caption='You have no pinned notes.' />
         </Wrapper>
     )

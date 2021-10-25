@@ -5,9 +5,9 @@ import ImageAvatar from './imageAvatar.components'
 import Icon from 'react-native-vector-icons/Feather';
 import { NotesContext } from '../context/notes.context';
 
-const Header = ({ isHomeScreen, navigation, settings_navigation }) => {
+const Header = ({ text,setText,noteId,isHomeScreen, navigation, settings_navigation }) => {
 
-    const { darkMode } = useContext(NotesContext);
+    const { darkMode, updateNotes } = useContext(NotesContext);
 
     return (
         <View style={styles.Headercontainer}>
@@ -19,7 +19,12 @@ const Header = ({ isHomeScreen, navigation, settings_navigation }) => {
                         <ImageAvatar image={images.profile_image} size={55} />
                     </TouchableOpacity>
                         :
-                        <TouchableOpacity onPress={()=> navigation.goBack()}>
+                        <TouchableOpacity onPress={()=> {
+                            navigation.goBack()
+                            updateNotes(noteId,text)
+                            setText?
+                            setText(''):''
+                        }}>
 
                             <Icon name='arrow-left' size={20} color={darkMode? 'gray' : appTheme.COLORS.black} />
                         </TouchableOpacity>

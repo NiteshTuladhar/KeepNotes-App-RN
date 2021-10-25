@@ -5,7 +5,7 @@ import { appTheme, images } from '../constants'
 const NoNotesFound = ({ caption }) => {
     return (
         <View style={styles.container}>
-           <Image style={styles.image} source={images.no_notes_found} />
+            {/**<Image style={styles.image} source={images.no_notes_found} />**/}
            <Text style={styles.caption}>{caption}</Text>
         </View>
     )
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems : 'center',
         justifyContent : 'center',
-        marginTop: -200,
+        
        
     },
     image:{

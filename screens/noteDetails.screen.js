@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Divider, TextInput } from 'react-native-paper'
 import  Icon  from 'react-native-vector-icons/AntDesign'
 import  EIcon  from 'react-native-vector-icons/Entypo'
+import  FIcon  from 'react-native-vector-icons/Feather'
 import Header from '../components/header.components'
 import TitleComponent from '../components/title.components'
 import Wrapper from '../components/wrapper.components'
@@ -13,9 +14,8 @@ import { NotesContext } from '../context/notes.context'
 const NoteDetails = ({ route,navigation }) => {
 
     const [text, setText] = useState('');
-    const [notesUpdated, setNotesUpdated] = useState(false);
 
-    const { getNoteDetails, noteDetails, updateNotes, darkMode } = useContext(NotesContext);
+    const { getNoteDetails, noteDetails, darkMode,deleteNotes } = useContext(NotesContext);
 
     const { noteId } = route.params;
    
@@ -28,35 +28,32 @@ const NoteDetails = ({ route,navigation }) => {
     }, [])
 
     useEffect(() => {
-
-        
-        setText(noteDetails)
     
-        
+        setText(noteDetails.replace(/['"]+/g, ''))
+    
     }, [noteDetails])
 
 
+    const onUpdate = (val) => {
+        setText(val)
+        console.log('notes updating', text)
+        
+    }
 
 
     return (
         <Wrapper>
-            <Header navigation={navigation} settings_navigation='Settings_Home'/>
+            <Header navigation={navigation} settings_navigation='Settings_Home' setText={setText} noteId={noteId} text={text}/>
             <View style={styles.container}>
                 <TitleComponent icon='note-plus-outline' title1='Notes' title2='Details' />
                 <View style={styles.icons}>
-                    <TouchableOpacity onPress={()=>{
-                        console.log('pressed')
-                        updateNotes(noteId, text)
-                        setNotesUpdated(true)
-                        setText('')
-                        navigation.goBack()
-                        
-                        }}>
-                        <Icon name='checkcircle' size={25} style={styles.icon} />
-                    </TouchableOpacity>
+                    
 
-                    <TouchableOpacity onPress={()=> navigation.goBack()}>
-                        <EIcon name='circle-with-cross' size={30} style={styles.icon2 } />
+                    <TouchableOpacity onPress={()=> {
+                        deleteNotes(noteId)
+                        navigation.goBack()
+                    }}>
+                        <FIcon name='trash' size={30} style={styles.icon2 } />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -65,7 +62,7 @@ const NoteDetails = ({ route,navigation }) => {
                 style={[styles.textArea, { backgroundColor: darkMode? appTheme.COLORS.dark_primary : 'white' }]}
                 multiline={true}
                 numberOfLines={28}
-                onChangeText={(val) => setText(val)}
+                onChangeText={(val) => onUpdate(val)}
                 value={text}
                 
                 theme={{

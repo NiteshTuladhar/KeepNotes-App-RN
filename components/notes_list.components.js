@@ -13,7 +13,7 @@ import AppModal from './modal.components';
 const NotesList = ({ notes, isLoading, caption, navigation }) => {
 
     const isFocused = useIsFocused()
-    const { modalVisibleState,visible, getData, darkMode } = useContext(NotesContext);
+    const { visible, getData, darkMode } = useContext(NotesContext);
 
   
     useEffect(() => {
@@ -32,19 +32,12 @@ const NotesList = ({ notes, isLoading, caption, navigation }) => {
                 !isLoading && notes.length ? 
                 <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={notes}
+                    data={notes.reverse()}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({ item }) => (
                         
                             <TouchableOpacity style={styles.listContainer} 
-                            onLongPress={
-                                ()=>{
-
-                                    modalVisibleState(item.id)
-                                    
-                                    
-                                }
-                            } 
+                            
 
                             onPress={ 
                                 ()=> navigation.navigate('NoteDetails',{

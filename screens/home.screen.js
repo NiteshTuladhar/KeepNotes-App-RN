@@ -23,9 +23,9 @@ const HomeScreen = ({ navigation }) => {
         <Wrapper>
             <View style={darkMode ? styles.topSectionDarkMode : styles.topSectionLightMode}>
                 <Header isHomeScreen navigation={navigation} settings_navigation='Settings_Home' />
-                <SearchBar />
+                <TitleComponent icontype='entypo' icon='text' title1='Notes' title2='List' counter={counter} />
             </View>
-            <TitleComponent icontype='entypo' icon='text' title1='Notes' title2='List' counter={counter} />
+                <SearchBar />
             <NotesList notes={my_notes} isLoading={isLoading} caption='You have no notes.' navigation={navigation} />
         </Wrapper>
     )

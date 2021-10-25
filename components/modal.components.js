@@ -4,6 +4,7 @@ import { Modal, StyleSheet, Text, Pressable, View,TouchableOpacity } from "react
 import { Divider } from "react-native-paper";
 import Icon from 'react-native-vector-icons/AntDesign';
 import FIcon from 'react-native-vector-icons/Feather';
+import EIcon from 'react-native-vector-icons/Entypo';
 import { appTheme } from "../constants";
 import { NotesContext } from "../context/notes.context";
 
@@ -11,13 +12,11 @@ const AppModal = ({ isVisible, noteid }) => {
   
     const {modalVisibleState, visible, currentModalValue , deleteNotes} = useContext(NotesContext);
 
-    console.log(`currentModalValue`, currentModalValue)
+    
     
   return (
     <View style={styles.centeredView}>
       <Modal
-        animationType="fade"
-    
         transparent={true}
         visible={visible}
         onRequestClose={() => {
@@ -38,17 +37,18 @@ const AppModal = ({ isVisible, noteid }) => {
             </Pressable>
 
             <View style={{ marginBottom : 15}}>
-                <TouchableOpacity onPress={()=>console.log('pinned')} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginBottom: 15 }}>
-                    <Icon name='pushpin' size={20} style={styles.pin} />
-                    <Text style={{ fontSize: 20 , fontWeight: 'normal', marginLeft: 10,}}>Pin</Text>
-                </TouchableOpacity>
-                <Divider />
-                <TouchableOpacity onPress={()=>{
+              <TouchableOpacity onPress={()=>{
                     deleteNotes(currentModalValue)
                 }} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' ,marginTop: 15}}>
-                    <FIcon name='trash' size={20} style={styles.pin} />
-                    <Text style={{ fontSize: 20 , fontWeight: 'normal' ,marginLeft: 10,}}>Delete</Text>
+                    <Icon name='check' size={20} style={styles.pin} />
+                    <Text style={{ fontSize: 20 , fontWeight: 'normal' ,marginLeft: 10,}}>Yes</Text>
                 </TouchableOpacity>
+                <Divider style={styles.divider}/>
+                <TouchableOpacity onPress={()=> modalVisibleState()} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginBottom: 15 }}>
+                    <EIcon name='cross' size={20} style={styles.pin} />
+                    <Text style={{ fontSize: 20 , fontWeight: 'normal', marginLeft: 10,}}>No</Text>
+                </TouchableOpacity>
+                
             </View>
             
           </View>
@@ -75,14 +75,14 @@ const styles = StyleSheet.create({
     paddingVertical : 30,
     paddingHorizontal: 15,
     alignItems: "center",
-    shadowColor: "#000",
+    shadowColor: `${appTheme.COLORS.light_black}`,
     shadowOffset: {
       width: 0,
       height: 2
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.8,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 2,
     
   },
   button: {
@@ -106,6 +106,9 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center"
+  },
+  divider:{
+    marginVertical : 10,
   }
 });
 
