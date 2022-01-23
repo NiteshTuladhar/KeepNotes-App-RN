@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { StyleSheet, View, Text } from 'react-native'
+import MenuDropDown from '../components/dropdown.components'
 import Header from '../components/header.components'
 import NotesList from '../components/notes_list.components'
 import SearchBar from '../components/searchBar.components'
@@ -22,8 +23,10 @@ const HomeScreen = ({ navigation }) => {
     return (
         <Wrapper>
             <View style={darkMode ? styles.topSectionDarkMode : styles.topSectionLightMode}>
+           
                 <Header isHomeScreen navigation={navigation} settings_navigation='Settings_Home' />
-                <TitleComponent icontype='entypo' icon='text' title1='Notes' title2='List' counter={counter} />
+                <MenuDropDown navigation={navigation} />
+                
             </View>
                 <SearchBar />
             <NotesList notes={my_notes} isLoading={isLoading} caption='You have no notes.' navigation={navigation} />
@@ -40,5 +43,6 @@ const styles = StyleSheet.create({
     },
     topSectionLightMode:{
         backgroundColor: appTheme.COLORS.white,
-    }
+    },
+    
 })

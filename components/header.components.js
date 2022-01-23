@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import { StyleSheet, View, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Image, TouchableOpacity, Text } from 'react-native'
 import { appTheme, images } from '../constants'
 import ImageAvatar from './imageAvatar.components'
 import Icon from 'react-native-vector-icons/Feather';
@@ -14,9 +14,11 @@ const Header = ({ text,setText,noteId,isHomeScreen, navigation, settings_navigat
             <View>
                 {
                     isHomeScreen ?
-                    <TouchableOpacity>
+                    <TouchableOpacity style={styles.wrapper}>
 
-                        <ImageAvatar image={images.profile_image} size={55} />
+                        <ImageAvatar image={images.logo} size={35} />
+                        <Text style={styles.title1}>My</Text>
+                        <Text style={[styles.title2,{ color: darkMode? 'white' : appTheme.COLORS.black }]}>Notes</Text>
                     </TouchableOpacity>
                         :
                         <TouchableOpacity onPress={()=> {
@@ -49,5 +51,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 25,
         marginTop: 15,
-    }
+    },
+    wrapper:{
+        flexDirection: 'row',
+
+    },
+    title1:{
+        marginLeft:10,
+        fontSize : appTheme.SIZES.large,
+        fontWeight : 'bold',
+        marginRight: 5,
+        color : appTheme.COLORS.primary,
+    },
+
+    title2:{
+        fontSize : appTheme.SIZES.large,
+        fontWeight : 'bold'
+    },
 })

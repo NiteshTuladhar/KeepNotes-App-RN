@@ -6,6 +6,7 @@ import AIcon from "react-native-vector-icons/AntDesign";
 
 import { appTheme } from '../constants';
 import { NotesContext } from '../context/notes.context';
+import MenuDropDown from './dropdown.components';
 
 const TitleComponent = ({ icon, icontype ,title1, title2, counter }) => {
     
@@ -23,6 +24,7 @@ const TitleComponent = ({ icon, icontype ,title1, title2, counter }) => {
                         <MIcon name={icon} size={30} style={styles.icon} color={darkMode? 'white' : appTheme.COLORS.black} />
 
                 }
+               
                 <Text style={styles.title1}>{title1}</Text>
                 <Text style={[styles.title2,{ color: darkMode? 'white' : appTheme.COLORS.black }]}>{title2}</Text>
             </View>

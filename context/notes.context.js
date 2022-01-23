@@ -2,6 +2,7 @@ import React, { useState, createContext , useEffect} from 'react'
 import { StyleSheet } from 'react-native'
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export const NotesContext = createContext();
 
 const NotesContextProvider = ({ children }) => {

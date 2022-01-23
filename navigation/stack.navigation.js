@@ -2,10 +2,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 
 import AddNotesScreen from '../screens/add_notes.screen';
+import AddTodosScreen from '../screens/add_todos.screen';
 import HomeScreen from '../screens/home.screen';
 import NoteDetails from '../screens/noteDetails.screen';
 import PinnedNotesScreen from '../screens/pinned_notes.screen';
 import SettingsScreen from '../screens/settings.screen';
+import todosDetails from '../screens/todosDetails.screen';
 
 
 const StackNav = createNativeStackNavigator(); 
@@ -34,6 +36,16 @@ export const HomeStackNavigator = () => {
             <StackNav.Screen 
                 name="Settings_Home"
                 component = {SettingsScreen}
+            />
+
+            <StackNav.Screen 
+                name="Todos"
+                component = {todosDetails}
+            />
+
+            <StackNav.Screen 
+                name="AddTodos"
+                component = {AddTodosScreen}
             />
         </StackNav.Navigator>
     )
